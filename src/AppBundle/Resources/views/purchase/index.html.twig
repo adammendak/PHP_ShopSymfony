@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Purchases list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Status</th>
+                <th>Sum</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for purchase in purchases %}
+            <tr>
+                <td><a href="{{ path('purchase_show', { 'id': purchase.id }) }}">{{ purchase.id }}</a></td>
+                <td>{{ purchase.status }}</td>
+                <td>{{ purchase.sum }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('purchase_show', { 'id': purchase.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('purchase_edit', { 'id': purchase.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('purchase_new') }}">Create a new purchase</a>
+        </li>
+    </ul>
+{% endblock %}

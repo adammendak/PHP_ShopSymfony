@@ -1,0 +1,21 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="'col-md-4 col-md-offset-4"><br>
+        <h2 class="form-signin-heading">Podaj dane do logowania:</h2><br>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+        <form class="form-signin" method="post" action="{{ path('homepage') }}">
+            <label for="inputEmail" class="sr-only">E-mail </label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="E-mail" required autofocus><br>
+            <label for="inputPassword" class="sr-only">Hasło</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Hasło" required><br>
+            <label for="inputPassword" class="sr-only">Powtórz hasło</label>
+            <input type="password" name="retyped_password" id="inputPassword" class="form-control" placeholder="Powtórz Hasło" required><br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się </button>
+        </form>
+        <a id="registerLinkButton" href="{{ path('user_new') }}"><button id="registerButton" class="btn btn-lg btn-success btn-block">Zarejestruj się</button></a>
+
+    </div>
+
+{% endblock %}
