@@ -29,11 +29,19 @@
             </ul>
 
             <ul class="nav nav-pills" style="float: right;">
-                <li role="presentation" class="active blueButton"><a href="{{ path('fos_user_registration_register') }}">Zaloguj się</a></li>
-
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li role="presentation">Witaj ! {{ app.user.username }}</li>
+                    <li role="presentation"><a href="{{ path('fos_user_profile_show') }}">wejdź na swój profil</a></li>
+                    <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a></li>
+                {% else %}
+                    <li role="presentation" class="activegit statu"><a href="{{ path('fos_user_security_login') }}">Zaloguj się</a></li>
+                {% endif %}
             </ul>
     </nav>
     <main>
+        <div>
+
+        </div>
         {% block body %}
         {% endblock %}
     </main>
