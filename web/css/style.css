@@ -7,6 +7,9 @@ body {
     min-height: 100%;
     font-family: 'Lato', sans-serif;
 }
+.flash {
+    display: none;
+}
 #nav{
     width: 100%;
     margin-left: auto;
@@ -20,6 +23,17 @@ body {
     margin-left: auto;
     margin-right: auto;
    
+}
+#welcomeName {
+    line-height: 40px;
+    text-align: center
+}
+#rightNav {
+    margin-top: 5px;
+}
+#changeCredentialsLink {
+    margin: 0 auto;
+    text-align: center;
 }
 .center-text{
     text-align: center;

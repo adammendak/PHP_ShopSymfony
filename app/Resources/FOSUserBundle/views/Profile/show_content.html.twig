@@ -1,8 +1,20 @@
 {% trans_default_domain 'FOSUserBundle' %}
-
-<div class="fos_user_user_show">
-    <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
-    <p>{{ 'profile.show.email'|trans }}: {{ user.email }}</p>
-    <p>adres: {{ user.address }}</p>
-    <a href="{{ path('fos_user_profile_edit') }}">zmień swoje dane</a>
+<div class="row">
+    <div class="col-md-offset-4 col-md-4 col-md-offset-4"><br>
+        <div class="fos_user_user_show">
+            <table class="table table-hover">
+                <tr>
+                    <td>Twoje imię i nazwisko: </td><td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td>Twój e-mail:</td><td> {{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td>adres: </td><td>{{ user.address }}</td>
+                </tr>
+            </table>
+            <a href="{{ path('fos_user_profile_edit') }}">zmień swoje dane</a><br>
+            <a href="{{ path('user_delete_link', { 'id': user.id }) }}">skasuj profil</a>
+        </div>
+    </div>
 </div>

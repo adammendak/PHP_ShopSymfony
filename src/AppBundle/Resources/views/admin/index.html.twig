@@ -1,0 +1,86 @@
+{% extends '@App/base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class=" col-md-offset-4 col-md-4 ">
+            <h1>Panel Admina</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class=" col-md-4 ">
+
+            <h3>Użytkownicy</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Zamówienia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</a></td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    {#<a href="{{ path('user_show', { 'id': user.id }) }}">show</a>#}
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class=" col-md-4 ">
+            <h3>Lista Produktów</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Photo</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in products %}
+                    <tr>
+                        <td>{{ product.id }}</a></td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.description }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.photo }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('product_new') }}">Create a new product</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

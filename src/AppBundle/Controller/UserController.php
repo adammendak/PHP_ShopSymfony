@@ -125,7 +125,7 @@ class UserController extends Controller
             $em->flush($user);
         }
 
-        return $this->redirectToRoute('user_index');
+        return $this->redirectToRoute('homepage');
     }
 
     /**
