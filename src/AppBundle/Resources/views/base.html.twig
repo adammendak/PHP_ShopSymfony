@@ -32,7 +32,9 @@
                     {% if is_granted("ROLE_ADMIN") %}
                         <li role="presentation"><a href="{{ path('admin_page') }}">PANEL ADMINA</a></li>
                     {% endif %}
-                    <li role="presentation"><a href="index.php?link=order">Twoje Zamówienia</a></li>
+                    {% if is_granted("ROLE_ADMIN") == false %}
+                        <li role="presentation"><a href="{{ url('purchase_index') }}">Twoje Zamówienia</a></li>
+                    {% endif %}
                     <li role="presentation"><a href="{{ path('fos_user_profile_show') }}">wejdź na swój profil</a></li>
                     <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a></li>
                 {% else %}
