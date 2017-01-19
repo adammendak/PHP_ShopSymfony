@@ -6,10 +6,8 @@
             <h1>Panel Admina</h1>
         </div>
     </div>
-
     <div class="row">
         <div class=" col-md-4 ">
-
             <h3>Użytkownicy</h3>
             <table class="table table-hover">
                 <thead>
@@ -31,7 +29,7 @@
                         <td>
                             <ul>
                                 <li>
-                                    {#<a href="{{ path('user_show', { 'id': user.id }) }}">show</a>#}
+
                                 </li>
                             </ul>
                         </td>
@@ -40,7 +38,7 @@
                 </tbody>
             </table>
         </div>
-        <div class=" col-md-4 ">
+        <div class="col-md-6">
             <h3>Lista Produktów</h3>
             <table class="table table-hover">
                 <thead>
@@ -64,10 +62,7 @@
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                                    <a href="{{ path('product_edit', { 'id': product.id }) }}">edytuj</a>
                                 </li>
                             </ul>
                         </td>
@@ -78,9 +73,41 @@
 
             <ul>
                 <li>
-                    <a href="{{ path('product_new') }}">Create a new product</a>
+                    <a href="{{ path('product_new') }}">Stwórz nowy produkt</a>
                 </li>
             </ul>
+        </div>
+        <div class="col-md-2">
+            <h3>Lista Zamówień</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Status</th>
+                    <th>Suma zamówienia</th>
+                    <th>Akcje</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for purchase in purchases %}
+                    <tr>
+                        <td><a href="{{ path('purchase_show', { 'id': purchase.id }) }}">{{ purchase.id }}</a></td>
+                        <td>{{ purchase.status }}</td>
+                        <td>{{ purchase.sum }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('purchase_show', { 'id': purchase.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('purchase_edit', { 'id': purchase.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

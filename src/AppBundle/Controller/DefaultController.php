@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Product;
 use AppBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -15,6 +16,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $session = $request->getSession();
+        if(!$session->get('basket'))
+        {
+            $session->set('basket', array());
+        }
         return $this->render('@App/index.html.twig');
     }
 
@@ -40,11 +46,23 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $users = $em->getRepository('AppBundle:User')->findAll();
         $products = $em->getRepository('AppBundle:Product')->findAll();
+        $purchase = $em->getRepository('AppBundle:Purchase')->findAll();
         return $this->render('@App/admin/index.html.twig', array(
             'users' => $users,
             'products' => $products,
+            'purchases' => $purchase,
         ));
     }
 
-
+    /**
+     * @Route("/basket", name="basket_page")
+     */
+    public function basketAction(Request $request)
+    {
+        $session = $request->getSession();
+        $basket= $session->get('basket');
+      return $this->render('@App/basket.html.twig', array(
+          'basket' => $basket,
+      ));
+    }
 }

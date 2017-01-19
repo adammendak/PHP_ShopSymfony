@@ -26,7 +26,7 @@ class PurchaseController extends Controller
 
         $purchases = $em->getRepository('AppBundle:Purchase')->findAll();
 
-        return $this->render('purchase/index.html.twig', array(
+        return $this->render('@App/purchase/index.html.twig', array(
             'purchases' => $purchases,
         ));
     }
@@ -51,7 +51,7 @@ class PurchaseController extends Controller
             return $this->redirectToRoute('purchase_show', array('id' => $purchase->getId()));
         }
 
-        return $this->render('purchase/new.html.twig', array(
+        return $this->render('@App/purchase/new.html.twig', array(
             'purchase' => $purchase,
             'form' => $form->createView(),
         ));
@@ -67,7 +67,7 @@ class PurchaseController extends Controller
     {
         $deleteForm = $this->createDeleteForm($purchase);
 
-        return $this->render('purchase/show.html.twig', array(
+        return $this->render('@App/purchase/show.html.twig', array(
             'purchase' => $purchase,
             'delete_form' => $deleteForm->createView(),
         ));

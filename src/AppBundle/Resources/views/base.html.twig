@@ -23,9 +23,8 @@
         <nav id="nav" class="navbar navbar-default navbar-fixed">
             <ul class="nav nav-pills blueButton" style='float: left;'>
                 <li role="presentation" class="active"><a href="{{ path('homepage') }}">Strona Główna</a></li>
-                <li role="presentation"><a href="index.php?link=products">Produkty</a></li>
-                <li role="presentation"><a href="index.php?link=basket">Koszyk</a></li>
-                <li role="presentation"><a href="index.php?link=order">Zamówienie</a></li>
+                <li role="presentation"><a href="{{ url('product_index') }}">Produkty</a></li>
+                <li role="presentation"><a href="{{ path('basket_page') }}">Koszyk</a></li>
             </ul>
             <ul id="rightNav" class="nav nav-pills" style="float: right;">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -33,6 +32,7 @@
                     {% if is_granted("ROLE_ADMIN") %}
                         <li role="presentation"><a href="{{ path('admin_page') }}">PANEL ADMINA</a></li>
                     {% endif %}
+                    <li role="presentation"><a href="index.php?link=order">Twoje Zamówienia</a></li>
                     <li role="presentation"><a href="{{ path('fos_user_profile_show') }}">wejdź na swój profil</a></li>
                     <li role="presentation"><a href="{{ path('fos_user_security_logout') }}">Wyloguj się</a></li>
                 {% else %}
@@ -48,8 +48,6 @@
         {% block body %}
         {% endblock %}
     </main>
-    <footer>
-    </footer>
     {% block javascripts %}{% endblock %}
     </body>
 </html>

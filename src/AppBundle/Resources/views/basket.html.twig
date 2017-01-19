@@ -1,0 +1,44 @@
+{% extends '@App/base.html.twig' %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-8">
+            <h3 class="center-text">Koszyk</h3>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Ilość</th>
+                    <th>Cena</th>
+                    <th>Suma</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for product in basket %}
+                    <tr>
+                        <td>{{ pruduct.id }}</a></td>
+                        <td>{{ product.name }}</td>
+                        <td>ilość</td>
+                        <td>{{ product.price }}</td>
+                        <td>Suma</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="basketOptions">
+            <ul>
+                <li>
+                    <a class="btn btn-bg btn-warning" href="{{ path('product_index') }}">Powrót do listy produktów</a>
+                </li>
+                <li>
+                    Suma zamówienia :
+                </li>
+                <li>
+                    <button class="btn btn-bg btn-info">Realizuj zamówienie</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,45 +1,23 @@
-{% extends 'base.html.twig' %}
-
+{% extends '@App/base.html.twig' %}
 {% block body %}
-    <h1>Products list</h1>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Photo</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="row">
+    <div class="col-md-12">
+    <h1 class="center-text">Lista Produktów</h1>
+        <section class="productsList">
         {% for product in products %}
-            <tr>
-                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.photo }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+            <div class="singleProduct">
+                <div class="imgWrapper">
+                    <a href="{{ path('product_show', { 'id': product.id }) }}"><img src="{{ product.photo }}"></a>
+                </div>
+                <div class="productDescription">
+                    <p class="center-text"><span>{{ product.name }}</span></p>
+                    <p class="center-text"><span>{{ product.description }}</span></p>
+                    <p class="center-text"><span>{{ product.price }} zł</span></p>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('product_new') }}">Create a new product</a>
-        </li>
-    </ul>
+        <div class="clearFix" style="clear: both;"></div>
+        </section>
+    </div>
+</div>
 {% endblock %}

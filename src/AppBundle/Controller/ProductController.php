@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Product;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Product controller.
@@ -26,7 +28,7 @@ class ProductController extends Controller
 
         $products = $em->getRepository('AppBundle:Product')->findAll();
 
-        return $this->render('product/index.html.twig', array(
+        return $this->render('@App/product/index.html.twig', array(
             'products' => $products,
         ));
     }
@@ -39,6 +41,8 @@ class ProductController extends Controller
      */
     public function newAction(Request $request)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Access denied!');
         $product = new Product();
         $form = $this->createForm('AppBundle\Form\ProductType', $product);
         $form->handleRequest($request);
@@ -48,10 +52,10 @@ class ProductController extends Controller
             $em->persist($product);
             $em->flush($product);
 
-            return $this->redirectToRoute('product_show', array('id' => $product->getId()));
+            return $this->redirectToRoute('admin_page');
         }
 
-        return $this->render('product/new.html.twig', array(
+        return $this->render('@App/product/new.html.twig', array(
             'product' => $product,
             'form' => $form->createView(),
         ));
@@ -67,7 +71,7 @@ class ProductController extends Controller
     {
         $deleteForm = $this->createDeleteForm($product);
 
-        return $this->render('product/show.html.twig', array(
+        return $this->render('@App/product/show.html.twig', array(
             'product' => $product,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -81,6 +85,7 @@ class ProductController extends Controller
      */
     public function editAction(Request $request, Product $product)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Access denied!');
         $deleteForm = $this->createDeleteForm($product);
         $editForm = $this->createForm('AppBundle\Form\ProductType', $product);
         $editForm->handleRequest($request);
@@ -88,10 +93,10 @@ class ProductController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_edit', array('id' => $product->getId()));
+            return $this->redirectToRoute('admin_page');
         }
 
-        return $this->render('product/edit.html.twig', array(
+        return $this->render('@App/product/edit.html.twig', array(
             'product' => $product,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -106,6 +111,7 @@ class ProductController extends Controller
      */
     public function deleteAction(Request $request, Product $product)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Access denied!');
         $form = $this->createDeleteForm($product);
         $form->handleRequest($request);
 

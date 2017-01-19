@@ -1,44 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Product</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ product.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ product.name }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ product.description }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ product.price }}</td>
-            </tr>
-            <tr>
-                <th>Photo</th>
-                <td>{{ product.photo }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('product_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <div class="row">
+        <div class="col-md-12">
+            <section class="product bg-success">
+                <h1 class="center-text">{{ product.name }}</h1>
+                <div>
+                    <img src="{{ product.photo }}">
+                </div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <th>Id produktu</th>
+                            <td>{{ product.id }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nazwa</th>
+                            <td>{{ product.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Opis</th>
+                            <td>{{ product.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Cena</th>
+                            <td>{{ product.price }} zł</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <div class="productOptions">
+                <ul>
+                    <li>
+                        <a class="btn btn-bg btn-warning" href="{{ path('product_index') }}">Powrót do listy produktów</a>
+                    </li>
+                    <li>
+                        {% if is_granted("ROLE_ADMIN") %}
+                            <li ><a class="btn btn-bg btn-info" href="{{ path('product_edit', { 'id': product.id }) }}">edytuj produkt</a></li>
+                        {% else %}
+                            <button class="btn btn-bg btn-info">DODAJ DO KOSZYKA</button>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
 {% endblock %}

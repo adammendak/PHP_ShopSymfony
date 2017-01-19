@@ -1,6 +1,6 @@
 {% extends '@App/base.html.twig' %}
 {% block body %}
-    <h3 class="center-text">Witaj w naszym sklepie internetowym!</h3>
+    <h3 id="welcomingHeader" class="center-text">Witaj w naszym sklepie internetowym!</h3>
 
     <div id = "carouselOfProducts" class = "carousel slide" data-ride = "carousel">
         <ol class = "carousel-indicators">
@@ -13,22 +13,22 @@
 
         <div class = "carousel-inner" role = "listbox">
             <div class = "item active">
-                <img src = "{{ asset('images/paganKot.jpg') }}" alt = "koteł" class = "img-circle">
+                <img src = "{{ asset('images/fotel.jpg') }}" alt = "koteł" class = "img-circle">
             </div>
 
             <div class = "item">
-                <img src = "{{ asset('images/piesel.jpg') }}" alt = "kicikici" class = "img-circle">
+                <img src = "{{ asset('images/fotelCzerwony.jpg') }}" alt = "kicikici" class = "img-circle">
             </div>
             <div class = "item">
-                <img src = "{{ asset('images/pentagram.jpg') }}" alt = "pentagram" class = "img-circle">
+                <img src = "{{ asset('images/lozko.jpg') }}" alt = "pentagram" class = "img-circle">
 
             </div>
             <div class = "item">
-                <img src = "{{ asset('images/lol.jpg') }}" alt = "zonk" class = "img-circle">
+                <img src = "{{ asset('images/kanapa.jpg') }}" alt = "zonk" class = "img-circle">
 
             </div>
             <div class = "item">
-                <img src ="{{ asset('images/paganowcy.jpg') }}" alt = "pagani" class = "img-circle">
+                <img src ="{{ asset('images/piesel.jpg') }}" alt = "pagani" class = "img-circle">
             </div>
         </div>
 
